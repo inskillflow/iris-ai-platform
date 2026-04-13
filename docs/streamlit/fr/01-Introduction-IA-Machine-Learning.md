@@ -576,9 +576,9 @@ graph TD
 
 Proportion de prédictions correctes sur le total.
 
-```
-Accuracy = (TP + TN) / (TP + TN + FP + FN)
-```
+$$
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+$$
 
 > ⚠️ L'accuracy peut être trompeuse avec des classes déséquilibrées. Si 95 % des emails sont non-spam, un modèle qui prédit toujours « non-spam » aura 95 % d'accuracy.
 
@@ -586,9 +586,9 @@ Accuracy = (TP + TN) / (TP + TN + FP + FN)
 
 Parmi les prédictions positives, combien sont réellement positives ?
 
-```
-Precision = TP / (TP + FP)
-```
+$$
+\text{Precision} = \frac{TP}{TP + FP}
+$$
 
 > Utile quand le **coût des faux positifs** est élevé (ex : diagnostic médical — dire qu'un patient est malade alors qu'il ne l'est pas).
 
@@ -596,9 +596,9 @@ Precision = TP / (TP + FP)
 
 Parmi les réels positifs, combien ont été correctement identifiés ?
 
-```
-Recall = TP / (TP + FN)
-```
+$$
+\text{Recall} = \frac{TP}{TP + FN}
+$$
 
 > Utile quand le **coût des faux négatifs** est élevé (ex : ne pas détecter une fraude bancaire).
 
@@ -606,18 +606,18 @@ Recall = TP / (TP + FN)
 
 Moyenne harmonique de la Precision et du Recall. Équilibre entre les deux.
 
-```
-F1 = 2 × (Precision × Recall) / (Precision + Recall)
-```
+$$
+F_1 = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+$$
 
 ### 6.6 Tableau récapitulatif
 
-| Métrique      | Formule                                         | Quand l'utiliser ?                              |
-| ------------- | ----------------------------------------------- | ----------------------------------------------- |
-| **Accuracy**  | `(TP+TN) / (TP+TN+FP+FN)`                     | Classes équilibrées                             |
-| **Precision** | `TP / (TP+FP)`                                  | Coût FP élevé (spam, diagnostic)                |
-| **Recall**    | `TP / (TP+FN)`                                  | Coût FN élevé (fraude, maladie grave)           |
-| **F1-Score**  | `2 × (Prec × Rec) / (Prec + Rec)`              | Compromis entre Precision et Recall             |
+| Métrique      | Formule                                                                    | Quand l'utiliser ?                              |
+| ------------- | -------------------------------------------------------------------------- | ----------------------------------------------- |
+| **Accuracy**  | $\frac{TP + TN}{TP + TN + FP + FN}$                                       | Classes équilibrées                             |
+| **Precision** | $\frac{TP}{TP + FP}$                                                      | Coût FP élevé (spam, diagnostic)                |
+| **Recall**    | $\frac{TP}{TP + FN}$                                                      | Coût FN élevé (fraude, maladie grave)           |
+| **F1-Score**  | $2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$ | Compromis entre Precision et Recall  |
 
 ### 6.7 En code Python
 
