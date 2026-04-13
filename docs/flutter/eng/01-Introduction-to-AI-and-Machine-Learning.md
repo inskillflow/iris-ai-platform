@@ -1060,6 +1060,284 @@ If you tune using the **test** set, you **fit to it indirectly** and metrics bec
 
 </details>
 
+<details>
+<summary><strong>Expand: Every glossary term explained like you're 5</strong></summary>
+
+Here is every ML term you'll encounter, explained with **real-life analogies** so that anyone &mdash; even without a tech background &mdash; can understand.
+
+---
+
+#### Algorithm
+
+**Technical**: A step-by-step procedure to train a model.
+
+**In plain English**: A **recipe**. Just like a cooking recipe tells you "add flour, then eggs, then bake at 180 &deg;C", an algorithm tells the computer "look at the data this way, adjust these numbers, repeat."
+
+> Example: "Random Forest" is a recipe. "Logistic Regression" is a different recipe. Same kitchen (Python), different dishes.
+
+---
+
+#### Batch
+
+**Technical**: A subset of training data processed in one step.
+
+**In plain English**: Imagine you're a teacher grading **500 exam papers**. You don't grade all 500, then give feedback. Instead, you grade them in **batches of 50**, adjusting your grading rubric slightly after each batch.
+
+> Batch size = 50 means the model processes 50 examples, learns a bit, then moves to the next 50.
+
+---
+
+#### Batch inference
+
+**Technical**: Running the model on many inputs at once (offline).
+
+**In plain English**: Instead of translating emails **one by one**, you dump a **folder of 10,000 emails** into Google Translate and come back later for the results. That's batch inference.
+
+---
+
+#### Classification
+
+**Technical**: Predicting a discrete category.
+
+**In plain English**: Looking at a fruit and saying **"apple"**, **"banana"**, or **"orange"**. You're putting things into **boxes** (categories), not measuring a number.
+
+> Opposite of regression (which predicts a number like "3.7 kg").
+
+---
+
+#### Cross-validation
+
+**Technical**: Repeated train/validate splits.
+
+**In plain English**: Imagine you're studying for 5 exams. Each time, you study with 4 chapters and test yourself on the 5th. Then you rotate which chapter is the "test". After 5 rounds, you have a much better idea of your **real level** than testing once.
+
+---
+
+#### Dataset
+
+**Technical**: The complete collection of data.
+
+**In plain English**: The **entire filing cabinet**. It contains all the patient records, all the flower measurements, all the emails. It's the raw material the model will learn from.
+
+---
+
+#### Deep Learning
+
+**Technical**: ML using deep neural networks.
+
+**In plain English**: Regular ML is like a **pocket calculator** &mdash; powerful but limited. Deep Learning is like a **brain simulator** with millions of connected neurons. It can learn incredibly complex things (recognize faces, understand speech, generate text) but needs **a LOT of data and computing power**.
+
+---
+
+#### Embedding
+
+**Technical**: A learned low-dimensional vector representation.
+
+**In plain English**: Imagine representing every country in the world with just **3 numbers** that capture its essence (GDP, population, climate score). An embedding does the same for words, images, or users &mdash; it compresses complex things into a **short list of numbers** that preserves meaning.
+
+> "King" and "Queen" would have similar embeddings, while "King" and "Refrigerator" would be far apart.
+
+---
+
+#### Epoch
+
+**Technical**: One full pass through the training data.
+
+**In plain English**: Reading your textbook **cover to cover once** = 1 epoch. Reading it **3 times** = 3 epochs. Each time you read it, you understand a little better (hopefully!).
+
+---
+
+#### Feature
+
+**Technical**: An input variable used by the model.
+
+**In plain English**: A **characteristic** you can measure. For a person: height, weight, age. For a flower: petal length, sepal width. For a house: number of rooms, square meters, neighborhood.
+
+> The model uses features to make decisions, just like a doctor uses symptoms (features) to make a diagnosis.
+
+---
+
+#### Feature Engineering
+
+**Technical**: Creating and transforming features.
+
+**In plain English**: A chef doesn't just use raw ingredients &mdash; they **chop, season, marinate**. Feature engineering is the same: you take raw data and **transform it** to make it more useful. Example: instead of a birth date, create an "age" column. Instead of "address", create a "distance to city center" feature.
+
+---
+
+#### Generalization
+
+**Technical**: Performance on unseen data.
+
+**In plain English**: A student who **understands the concepts** can answer new questions they've never seen. That's generalization. A student who **memorized answers** can only repeat what they've seen. That's overfitting.
+
+---
+
+#### GPU
+
+**Technical**: Graphics Processing Unit used to accelerate training.
+
+**In plain English**: Imagine you need to paint **1,000 identical walls**. A CPU is like **one very skilled painter** who paints walls one by one. A GPU is like **1,000 average painters** working simultaneously. For repetitive tasks (like neural network math), the GPU wins by a landslide.
+
+---
+
+#### Gradient Descent
+
+**Technical**: Optimization algorithm that adjusts parameters to minimize error.
+
+**In plain English**: You're **blindfolded on a mountain** and you want to reach the valley (lowest point). Strategy: feel the ground around you, take a step in the **steepest downhill direction**, repeat. Eventually you reach the bottom. That's gradient descent &mdash; the model takes small steps to reduce its error.
+
+> The **learning rate** is how big your steps are. Too big = you overshoot the valley. Too small = you'll get there in 1,000 years.
+
+---
+
+#### Hyperparameter
+
+**Technical**: A setting chosen BEFORE training.
+
+**In plain English**: When cooking, you choose the **oven temperature** before baking. You don't change it while the cake is inside. Hyperparameters are the same: `n_estimators=100` (how many trees), `max_depth=5` (how deep each tree), `learning_rate=0.01` (step size). You set them, then train.
+
+> Parameters = what the model LEARNS. Hyperparameters = what YOU choose.
+
+---
+
+#### Inference
+
+**Technical**: Using a trained model to make predictions.
+
+**In plain English**: Training = studying. Inference = **taking the exam**. The model is done learning; now it's using what it learned to answer new questions.
+
+> In production, inference is what happens when a user sends a request to your API and gets back a prediction.
+
+---
+
+#### Label / Target
+
+**Technical**: The value to predict.
+
+**In plain English**: The **correct answer** on the answer key. For each flower, the label is its species (Setosa, Versicolor, Virginica). For each email, the label is "spam" or "not spam". The model's job is to **guess this label** from the features.
+
+---
+
+#### Learning Rate
+
+**Technical**: Controls how fast the model adjusts its weights.
+
+**In plain English**: You're learning to park a car.
+- **High learning rate** = you turn the steering wheel aggressively &rarr; fast but you might crash into the wall
+- **Low learning rate** = you turn very gently &rarr; safe but it takes 45 minutes to park
+- **Good learning rate** = smooth, efficient parking
+
+---
+
+#### Loss Function / Cost Function
+
+**Technical**: Measures how wrong predictions are.
+
+**In plain English**: Your **score on a test, but reversed**: the higher the loss, the worse you did. The model's goal is to make the loss **as small as possible**.
+
+> Loss = 0 means the model is perfect. Loss = 10 means it's making big mistakes.
+
+---
+
+#### Model
+
+**Technical**: A learned mapping from inputs to outputs.
+
+**In plain English**: A model is a **magic box**. You feed it inputs (4 flower measurements) and it outputs a prediction (species name). Inside the box are numbers (parameters) that were adjusted during training to make good predictions.
+
+---
+
+#### Normalization / Standardization
+
+**Technical**: Rescaling features to a common range.
+
+**In plain English**: Imagine comparing students from different countries. One has a grade out of **20** (French system), another out of **100** (US system), another out of **4.0** (GPA). You can't compare 15/20 with 80/100 directly. You need to **convert to the same scale** first. That's what StandardScaler does for the model.
+
+---
+
+#### Overfitting
+
+**Technical**: Model memorizes training data, fails on new data.
+
+**In plain English**: A student who **memorized the answer key word for word**. On the exact same questions: perfect score. On new questions: fails miserably. The student didn't learn the concepts, they memorized the answers.
+
+---
+
+#### Parameter
+
+**Technical**: Values learned during training (e.g., weights).
+
+**In plain English**: When you learn to ride a bike, your **balance, muscle memory, reflexes** are "parameters" that your brain adjusts automatically. You don't choose them &mdash; your brain learns them through practice. In ML, parameters are numbers inside the model that adjust during training.
+
+---
+
+#### Pipeline
+
+**Technical**: Chained preprocessing + model steps.
+
+**In plain English**: A **car assembly line**: Step 1 = weld the frame, Step 2 = paint it, Step 3 = install the engine, Step 4 = quality check. A Pipeline chains ML steps: Step 1 = scale the data, Step 2 = train the model, Step 3 = predict.
+
+---
+
+#### Prediction
+
+**Technical**: The model's output for new data.
+
+**In plain English**: The model's **guess**. "I think this flower is a Setosa." "I think this email is spam." "I think this house is worth $350,000." It can be right or wrong.
+
+---
+
+#### Regularization
+
+**Technical**: Penalty to prevent overly complex models.
+
+**In plain English**: Imagine a student who wants to memorize every single detail. Their teacher says: "For every extra fact you memorize, I'll **subtract points**." This forces the student to focus on the **big ideas** instead of tiny details. That's regularization &mdash; it punishes the model for being too complex.
+
+---
+
+#### Regression
+
+**Technical**: Predicting a continuous numeric value.
+
+**In plain English**: Instead of putting things in boxes (classification), you're **measuring with a ruler**. "This house is worth $347,250." "Tomorrow's temperature will be 22.3 &deg;C." The answer is a number, not a category.
+
+---
+
+#### Train / Validation / Test Sets
+
+**Technical**: Three data splits for fitting, tuning, and final evaluation.
+
+**In plain English**:
+
+| Set | Analogy | Purpose |
+|-----|---------|---------|
+| **Training set** | Your **textbook** | Study material the model learns from |
+| **Validation set** | Your **practice exams** | Used to decide which study strategy (hyperparameters) works best |
+| **Test set** | The **final sealed exam** | Opened ONLY at the end to get an honest grade |
+
+Why three? If you peek at the final exam while studying, your grade is dishonest. The test set must stay **untouched** until you're completely done training.
+
+---
+
+#### Underfitting
+
+**Technical**: Model too simple to capture patterns.
+
+**In plain English**: A student who **barely opened the book**. They fail practice exercises AND the real exam because they haven't learned anything.
+
+---
+
+#### Variance (in bias-variance tradeoff)
+
+**Technical**: Error due to sensitivity to training data fluctuations.
+
+**In plain English**: A student who changes their entire understanding every time they see a **new practice question**. They're too reactive. One minute they think the answer is A, the next it's Z. High variance = the model is **unstable** and gives wildly different results depending on which training data it sees.
+
+</details>
+
+
+
 [↑ Back to top](#top)
 
 ---

@@ -1662,6 +1662,275 @@ if st.button("🔮 Prédire"):
 | **Variance**               | Erreur due à une sensibilité excessive aux fluctuations des données d'entraînement              |
 | **Validation Set**         | Données utilisées pour ajuster les hyperparamètres pendant l'entraînement                       |
 
+<details>
+<summary><strong>Chaque terme du glossaire expliqué pour les débutants absolus</strong></summary>
+
+Voici chaque terme ML que vous rencontrerez, expliqué avec des **analogies de la vie quotidienne** pour que tout le monde puisse comprendre &mdash; même sans aucun bagage technique.
+
+---
+
+#### Algorithme
+
+**Technique** : Procédure pas à pas pour entraîner un modèle.
+
+**En langage simple** : Une **recette de cuisine**. Comme une recette qui dit « ajoutez la farine, puis les œufs, puis enfournez à 180 &deg;C », un algorithme dit à l'ordinateur « regarde les données de cette façon, ajuste ces nombres, répète ».
+
+> Exemple : « Random Forest » est une recette. « Régression Logistique » est une autre recette. Même cuisine (Python), plats différents.
+
+---
+
+#### Batch (lot)
+
+**Technique** : Sous-ensemble de données traité en une seule étape.
+
+**En langage simple** : Vous êtes prof et vous corrigez **500 copies**. Vous ne corrigez pas les 500 d'un coup. Vous les corrigez par **lots de 50**, en ajustant votre barème légèrement après chaque lot.
+
+> Batch size = 50 signifie que le modèle traite 50 exemples, apprend un peu, puis passe aux 50 suivants.
+
+---
+
+#### Biais (Bias)
+
+**Technique** : Erreur due à des hypothèses trop simplistes.
+
+**En langage simple** : Un médecin qui diagnostique TOUJOURS « rhume » peu importe les symptômes. Il est **biaisé** vers une seule réponse. Son diagnostic est simple mais souvent faux. Un modèle avec un biais élevé fait la même chose : il simplifie trop.
+
+---
+
+#### Classification
+
+**Technique** : Prédire une catégorie discrète.
+
+**En langage simple** : Regarder un fruit et dire **« pomme »**, **« banane »** ou **« orange »**. On met les choses dans des **boîtes** (catégories), on ne mesure pas un nombre.
+
+> Le contraire de la régression (qui prédit un nombre comme « 3,7 kg »).
+
+---
+
+#### Clustering (regroupement)
+
+**Technique** : Regrouper des données similaires sans labels.
+
+**En langage simple** : Vous avez un **tas de chaussettes mélangées** après la lessive. Personne ne vous dit quels sont les groupes. Vous les triez naturellement par **couleur, taille, motif**. C'est du clustering : trouver des groupes sans qu'on vous dise quels groupes existent.
+
+---
+
+#### Cross-validation (validation croisée)
+
+**Technique** : Évaluation par découpage multiple des données.
+
+**En langage simple** : Vous révisez pour 5 examens. À chaque fois, vous étudiez avec 4 chapitres et vous vous testez sur le 5e. Puis vous changez quel chapitre est le « test ». Après 5 tours, vous avez une bien meilleure idée de votre **vrai niveau** qu'en testant une seule fois.
+
+---
+
+#### Dataset (jeu de données)
+
+**Technique** : L'ensemble complet des données.
+
+**En langage simple** : L'**armoire de classement entière**. Elle contient tous les dossiers patients, toutes les mesures de fleurs, tous les emails. C'est la matière première à partir de laquelle le modèle va apprendre.
+
+---
+
+#### Deep Learning (apprentissage profond)
+
+**Technique** : ML avec des réseaux de neurones profonds.
+
+**En langage simple** : Le ML classique c'est comme une **calculatrice de poche** &mdash; puissante mais limitée. Le Deep Learning c'est comme un **simulateur de cerveau** avec des millions de neurones connectés. Il peut apprendre des choses incroyablement complexes (reconnaître des visages, comprendre la parole, générer du texte) mais a besoin de **BEAUCOUP de données et de puissance de calcul**.
+
+---
+
+#### Epoch (époque)
+
+**Technique** : Un passage complet sur toutes les données d'entraînement.
+
+**En langage simple** : Lire votre manuel **de la première à la dernière page une fois** = 1 epoch. Le lire **3 fois** = 3 epochs. À chaque lecture, vous comprenez un peu mieux (en principe !).
+
+---
+
+#### Feature (caractéristique)
+
+**Technique** : Variable d'entrée utilisée par le modèle.
+
+**En langage simple** : Une **caractéristique mesurable**. Pour une personne : taille, poids, âge. Pour une fleur : longueur du pétale, largeur du sépale. Pour une maison : nombre de pièces, mètres carrés, quartier.
+
+> Le modèle utilise les features pour prendre des décisions, comme un médecin utilise les symptômes (features) pour faire un diagnostic.
+
+---
+
+#### Feature Engineering
+
+**Technique** : Création et transformation de features.
+
+**En langage simple** : Un chef cuisinier n'utilise pas les ingrédients bruts &mdash; il les **coupe, assaisonne, marine**. Le Feature Engineering c'est pareil : on prend des données brutes et on les **transforme** pour les rendre plus utiles. Exemple : au lieu d'une date de naissance, créer une colonne « âge ». Au lieu d'une « adresse », créer une feature « distance au centre-ville ».
+
+---
+
+#### GPU (processeur graphique)
+
+**Technique** : Utilisé pour accélérer l'entraînement des réseaux de neurones.
+
+**En langage simple** : Vous devez peindre **1 000 murs identiques**. Un CPU c'est comme **un peintre très compétent** qui peint les murs un par un. Un GPU c'est comme **1 000 peintres moyens** qui travaillent simultanément. Pour des tâches répétitives (comme les calculs de réseaux de neurones), le GPU gagne haut la main.
+
+---
+
+#### Gradient Descent (descente de gradient)
+
+**Technique** : Algorithme d'optimisation qui ajuste les paramètres.
+
+**En langage simple** : Vous êtes **les yeux bandés sur une montagne** et vous voulez atteindre la vallée (le point le plus bas). Stratégie : tâtez le sol autour de vous, faites un pas dans la direction **la plus pentue vers le bas**, répétez. Vous finirez par atteindre le fond. C'est la descente de gradient &mdash; le modèle fait des petits pas pour réduire son erreur.
+
+> Le **learning rate** c'est la taille de vos pas. Trop grands = vous dépassez la vallée. Trop petits = vous y arriverez dans 1 000 ans.
+
+---
+
+#### Hyperparamètre
+
+**Technique** : Paramètre défini AVANT l'entraînement.
+
+**En langage simple** : Quand vous cuisinez, vous réglez la **température du four** avant d'enfourner. Vous ne la changez pas pendant que le gâteau cuit. Les hyperparamètres c'est pareil : `n_estimators=100` (combien d'arbres), `max_depth=5` (profondeur de chaque arbre), `learning_rate=0.01` (taille du pas). Vous les fixez, puis vous entraînez.
+
+> Paramètres = ce que le modèle APPREND. Hyperparamètres = ce que VOUS choisissez.
+
+---
+
+#### Inférence (Prédiction)
+
+**Technique** : Utiliser un modèle entraîné pour faire des prédictions.
+
+**En langage simple** : Entraînement = réviser. Inférence = **passer l'examen**. Le modèle a fini d'apprendre ; maintenant il utilise ce qu'il a appris pour répondre à de nouvelles questions.
+
+> En production, l'inférence c'est ce qui se passe quand un utilisateur envoie une requête à votre API et reçoit une prédiction.
+
+---
+
+#### Label / Target (étiquette / cible)
+
+**Technique** : La valeur à prédire.
+
+**En langage simple** : La **bonne réponse** sur le corrigé. Pour chaque fleur, le label c'est son espèce (Setosa, Versicolor, Virginica). Pour chaque email, le label c'est « spam » ou « pas spam ». Le travail du modèle est de **deviner ce label** à partir des features.
+
+---
+
+#### Learning Rate (taux d'apprentissage)
+
+**Technique** : Contrôle la vitesse d'ajustement des poids.
+
+**En langage simple** : Vous apprenez à faire un créneau.
+- **Learning rate élevé** = vous tournez le volant agressivement &rarr; rapide mais vous risquez de taper le mur
+- **Learning rate faible** = vous tournez très doucement &rarr; sûr mais ça prend 45 minutes
+- **Bon learning rate** = stationnement fluide et efficace
+
+---
+
+#### Loss Function / Fonction de perte
+
+**Technique** : Mesure l'écart entre prédiction et réalité.
+
+**En langage simple** : Votre **note d'examen, mais à l'envers** : plus le loss est élevé, plus c'est mauvais. L'objectif du modèle est de rendre le loss **le plus petit possible**.
+
+> Loss = 0 signifie que le modèle est parfait. Loss = 10 signifie qu'il fait de grosses erreurs.
+
+---
+
+#### Modèle
+
+**Technique** : Correspondance apprise entre entrées et sorties.
+
+**En langage simple** : Un modèle c'est une **boîte magique**. Vous lui donnez des entrées (4 mesures de fleur) et elle sort une prédiction (nom de l'espèce). À l'intérieur de la boîte il y a des nombres (paramètres) qui ont été ajustés pendant l'entraînement pour faire de bonnes prédictions.
+
+---
+
+#### Normalisation / Standardisation
+
+**Technique** : Remettre les features à la même échelle.
+
+**En langage simple** : Imaginez comparer des élèves de différents pays. L'un a une note sur **20** (système français), l'autre sur **100** (système américain), l'autre sur **4.0** (GPA). On ne peut pas comparer 15/20 avec 80/100 directement. Il faut **convertir à la même échelle** d'abord. C'est ce que fait StandardScaler pour le modèle.
+
+---
+
+#### Overfitting (surapprentissage)
+
+**Technique** : Le modèle mémorise les données d'entraînement.
+
+**En langage simple** : Un étudiant qui a **appris le corrigé par cœur mot pour mot**. Sur les mêmes questions : note parfaite. Sur des nouvelles questions : échec total. L'étudiant n'a pas compris les concepts, il a mémorisé les réponses.
+
+---
+
+#### Paramètre
+
+**Technique** : Valeurs apprises pendant l'entraînement (ex. : poids).
+
+**En langage simple** : Quand vous apprenez à faire du vélo, votre **équilibre, mémoire musculaire, réflexes** sont des « paramètres » que votre cerveau ajuste automatiquement. Vous ne les choisissez pas &mdash; votre cerveau les apprend par la pratique. En ML, les paramètres sont des nombres à l'intérieur du modèle qui s'ajustent pendant l'entraînement.
+
+---
+
+#### Pipeline
+
+**Technique** : Chaîne d'étapes prétraitement + modèle.
+
+**En langage simple** : Une **chaîne de montage automobile** : Étape 1 = souder le châssis, Étape 2 = le peindre, Étape 3 = installer le moteur, Étape 4 = contrôle qualité. Un Pipeline enchaîne les étapes ML : Étape 1 = mettre les données à l'échelle, Étape 2 = entraîner le modèle, Étape 3 = prédire.
+
+---
+
+#### Régression
+
+**Technique** : Prédire une valeur numérique continue.
+
+**En langage simple** : Au lieu de mettre les choses dans des boîtes (classification), on **mesure avec une règle**. « Cette maison vaut 347 250 &euro;. » « La température de demain sera 22,3 &deg;C. » La réponse est un nombre, pas une catégorie.
+
+---
+
+#### Régularisation
+
+**Technique** : Pénalité pour éviter les modèles trop complexes.
+
+**En langage simple** : Un étudiant qui veut mémoriser chaque détail. Son prof lui dit : « Pour chaque fait supplémentaire que tu mémorises, je te **retire des points**. » Ça force l'étudiant à se concentrer sur les **grandes idées** au lieu des petits détails. C'est la régularisation &mdash; elle punit le modèle pour être trop complexe.
+
+---
+
+#### Training / Validation / Test Sets
+
+**Technique** : Trois découpages de données pour entraîner, ajuster et évaluer.
+
+**En langage simple** :
+
+| Ensemble | Analogie | Rôle |
+|----------|----------|------|
+| **Training set** | Votre **manuel scolaire** | Le matériel d'étude à partir duquel le modèle apprend |
+| **Validation set** | Vos **examens blancs** | Utilisé pour décider quelle stratégie d'étude (hyperparamètres) fonctionne le mieux |
+| **Test set** | L'**examen final sous pli scellé** | Ouvert UNIQUEMENT à la fin pour obtenir une note honnête |
+
+Pourquoi trois ? Si vous regardez l'examen final en étudiant, votre note est malhonnête. Le test set doit rester **intouché** jusqu'à ce que vous ayez complètement fini l'entraînement.
+
+---
+
+#### Underfitting (sous-apprentissage)
+
+**Technique** : Le modèle est trop simple pour capturer les patterns.
+
+**En langage simple** : Un étudiant qui a **à peine ouvert le livre**. Il rate les exercices d'entraînement ET l'examen final parce qu'il n'a rien appris.
+
+---
+
+#### Variance (dans le compromis biais-variance)
+
+**Technique** : Erreur due à une sensibilité excessive aux données.
+
+**En langage simple** : Un étudiant qui change totalement sa compréhension à chaque **nouvelle question d'entraînement**. Il est trop réactif. Une minute il pense que la réponse est A, la suivante c'est Z. Variance élevée = le modèle est **instable** et donne des résultats très différents selon les données d'entraînement qu'il voit.
+
+---
+
+#### API (Interface de programmation)
+
+**Technique** : Interface HTTP permettant à d'autres applications d'utiliser le modèle.
+
+**En langage simple** : Un **guichet de service**. Vous (l'application frontend) venez au guichet avec une demande (« Quelle est l'espèce de cette fleur ? »). Le guichet (l'API) transmet la demande au modèle en coulisses, puis vous donne la réponse. Vous n'avez pas besoin de savoir comment ça fonctionne à l'intérieur.
+
+> FastAPI crée ce guichet. Votre app Flutter ou Streamlit vient y poser des questions.
+
+</details>
+
+
 </details>
 
 <p align="right"><a href="#top">↑ Retour en haut</a></p>
