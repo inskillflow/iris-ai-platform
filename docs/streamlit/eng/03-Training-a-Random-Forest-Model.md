@@ -253,9 +253,9 @@ With a **25% test split** and `random_state=42`, a Random Forest with **`n_estim
 
 ### Accuracy
 
-\[
+$$
 \text{Accuracy} = \frac{\text{correct predictions}}{\text{total test samples}}
-\]
+$$
 
 ```python
 from sklearn.metrics import accuracy_score

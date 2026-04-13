@@ -394,8 +394,8 @@ print(stats)
 | Statistic | Formula / idea | What it tells you |
 |-----------|----------------|-------------------|
 | **count** | Number of non-null values | Detects missing data |
-| **mean** | \(\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i\) | Central tendency |
-| **std** | \(s = \sqrt{\frac{1}{n-1}\sum(x_i - \bar{x})^2}\) | Spread around the mean |
+| **mean** | $\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$ | Central tendency |
+| **std** | $s = \sqrt{\frac{1}{n-1}\sum(x_i - \bar{x})^2}$ | Spread around the mean |
 | **min** | Smallest value | Lower bound |
 | **25%** | First quartile (Q1) | 25% of values fall below |
 | **50%** | Median (Q2) | Middle value; robust to outliers |
@@ -440,7 +440,7 @@ print(f"Q3     : {np.percentile(petal_length, 75):.4f}")  # 5.1000
 print(f"IQR    : {np.percentile(petal_length, 75) - np.percentile(petal_length, 25):.4f}")  # 3.5000
 ```
 
-> **Note**: `ddof=1` uses Bessel’s correction (divide by \(n-1\)) for the sample standard deviation, matching Pandas `std()`.
+> **Note**: `ddof=1` uses Bessel’s correction (divide by $n-1$) for the sample standard deviation, matching Pandas `std()`.
 
 ### Interquartile range (IQR)
 

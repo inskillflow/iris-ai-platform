@@ -84,9 +84,9 @@ The goal is **generalization**: good performance on **new** data, not memorizing
 
 ### 3.1 Supervised learning
 
-You have **input–output pairs** \((x, y)\). The model learns to predict \(y\) from \(x\).
+You have **input–output pairs** $(x, y)$. The model learns to predict $y$ from $x$.
 
-| Task type | Output \(y\) | Example |
+| Task type | Output $y$ | Example |
 |-----------|--------------|---------|
 | **Classification** | Discrete label | Spam / not spam |
 | **Regression** | Continuous value | House price |
@@ -124,11 +124,11 @@ The table below summarizes seven widely taught algorithms, typical problem types
 |-----------|---------------|-------------|-----------|
 | **Linear regression** | Supervised (regression) | Predict continuous values | Fit a linear relationship between features and target |
 | **Logistic regression** | Supervised (classification) | Binary / multiclass labels | Model class probabilities with a sigmoid / softmax |
-| **k-Nearest Neighbors (k-NN)** | Supervised | Classification / regression | Predict from the \(k\) closest training examples |
+| **k-Nearest Neighbors (k-NN)** | Supervised | Classification / regression | Predict from the $k$ closest training examples |
 | **Decision tree** | Supervised | Classification / regression | Recursive splits on features (if–else rules) |
 | **Random forest** | Supervised | Classification / regression | Ensemble of trees; reduces variance vs single tree |
 | **Support Vector Machine (SVM)** | Supervised | Classification (often binary) | Find a margin-maximizing boundary (with kernels for non-linear data) |
-| **k-Means** | Unsupervised | Clustering | Assign points to \(k\) centroids; iterate until stable |
+| **k-Means** | Unsupervised | Clustering | Assign points to $k$ centroids; iterate until stable |
 
 <details>
 <summary>How to choose among them (high level)</summary>
@@ -136,7 +136,7 @@ The table below summarizes seven widely taught algorithms, typical problem types
 - **Interpretability**: Trees and linear/logistic models are often easier to explain than deep nets or opaque ensembles.
 - **Data size**: k-NN can be slow at prediction time on large datasets; linear models scale well.
 - **Non-linearity**: Kernels (SVM), tree ensembles, or neural networks handle non-linear patterns; linear models need feature engineering.
-- **No labels**: Use **k-Means** or other clustering when you only have \(x\).
+- **No labels**: Use **k-Means** or other clustering when you only have $x$.
 
 </details>
 
@@ -194,10 +194,10 @@ Definitions (binary case):
 
 | Metric | Formula | Meaning |
 |--------|---------|---------|
-| **Accuracy** | \(\frac{TP + TN}{TP + TN + FP + FN}\) | Fraction of all correct predictions |
-| **Precision** | \(\frac{TP}{TP + FP}\) | Of predicted positives, how many were correct |
-| **Recall** (sensitivity) | \(\frac{TP}{TP + FN}\) | Of actual positives, how many were found |
-| **F1-score** | \(2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}\) | Harmonic mean of precision and recall |
+| **Accuracy** | $\frac{TP + TN}{TP + TN + FP + FN}$ | Fraction of all correct predictions |
+| **Precision** | $\frac{TP}{TP + FP}$ | Of predicted positives, how many were correct |
+| **Recall** (sensitivity) | $\frac{TP}{TP + FN}$ | Of actual positives, how many were found |
+| **F1-score** | $2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$ | Harmonic mean of precision and recall |
 
 **When accuracy misleads**: Imbalanced classes (e.g., 99% negatives) can yield high accuracy with a useless model. Prefer **precision/recall/F1** or **ROC-AUC / PR-AUC**, and always inspect the **confusion matrix**.
 
@@ -371,7 +371,7 @@ if st.button("Predict"):
 | **Cross-validation** | Repeated train/validate splits to estimate performance |
 | **Feature** | One measurable input to the model |
 | **Generalization** | Performance on new data not used in training |
-| **Hyperparameter** | Setting chosen before training (e.g., \(k\) in k-NN) |
+| **Hyperparameter** | Setting chosen before training (e.g., $k$ in k-NN) |
 | **Inference** | Using a trained model to make predictions |
 | **Label** | Target output in supervised learning |
 | **Loss function** | Quantity minimized during training |

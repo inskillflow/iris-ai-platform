@@ -119,13 +119,13 @@ flowchart LR
 
 ### Supervised learning
 
-You have **input features** \(X\) and **known outputs** \(y\) (labels). The model learns \(f\) such that \(f(X) \approx y\).
+You have **input features** $X$ and **known outputs** $y$ (labels). The model learns $f$ such that $f(X) \approx y$.
 
 - **Examples**: spam vs not spam, house price prediction, disease diagnosis from tests.
 
 ### Unsupervised learning
 
-You have **only inputs** \(X\). The model finds **structure**: clusters, low-dimensional representations, anomalies.
+You have **only inputs** $X$. The model finds **structure**: clusters, low-dimensional representations, anomalies.
 
 - **Examples**: customer segmentation, topic discovery, anomaly detection in logs.
 
@@ -156,8 +156,8 @@ flowchart TB
 
 | Paradigm | Typical data | Goal | Example task |
 |----------|--------------|------|----------------|
-| **Supervised** | \((X, y)\) pairs | Predict \(y\) or estimate distribution | Classify emails |
-| **Unsupervised** | \(X\) only | Discover structure | Group users by behavior |
+| **Supervised** | $(X, y)$ pairs | Predict $y$ or estimate distribution | Classify emails |
+| **Unsupervised** | $X$ only | Discover structure | Group users by behavior |
 | **Reinforcement** | Transitions + rewards | Maximize return | Train a game bot |
 
 <details>
@@ -180,7 +180,7 @@ The table below summarizes **classic** algorithms you will see in courses and pr
 
 | Algorithm | Type | Idea | Typical use |
 |-----------|------|------|-------------|
-| **Linear regression** | Supervised / regression | Fit a linear relationship \(y \approx w^\top x + b\) | Trends, simple forecasting |
+| **Linear regression** | Supervised / regression | Fit a linear relationship $y \approx w^\top x + b$ | Trends, simple forecasting |
 | **Logistic regression** | Supervised / classification | Model class probabilities with a sigmoid on a linear score | Binary/multiclass baseline |
 | **Decision tree** | Supervised | Recursive splits on features to isolate classes or reduce error | Interpretable rules, mixed data types |
 | **Random forest** | Supervised | Ensemble of trees with bagging + random feature subsets | Strong default for tabular data |
@@ -259,9 +259,9 @@ The **confusion matrix** tabulates TP, FP, TN, FN. For multiclass problems, it g
 
 Proportion of correct predictions:
 
-\[
+$$
 \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
-\]
+$$
 
 Use with care when **classes are imbalanced** (a naive “always majority class” model can look accurate).
 
@@ -269,25 +269,25 @@ Use with care when **classes are imbalanced** (a naive “always majority class�
 
 Of all **predicted positives**, how many were correct:
 
-\[
+$$
 \text{Precision} = \frac{TP}{TP + FP}
-\]
+$$
 
 ### Recall (sensitivity)
 
 Of all **actual positives**, how many you caught:
 
-\[
+$$
 \text{Recall} = \frac{TP}{TP + FN}
-\]
+$$
 
 ### F1-score
 
 Harmonic mean of precision and recall (balances both):
 
-\[
+$$
 F_1 = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
-\]
+$$
 
 <details>
 <summary><strong>Expand: Multiclass metrics</strong></summary>
