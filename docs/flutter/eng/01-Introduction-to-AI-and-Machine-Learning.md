@@ -189,6 +189,69 @@ The table below summarizes **classic** algorithms you will see in courses and pr
 | **Neural networks** | Supervised (often) | Stacked nonlinear transformations (layers) | Images, text, audio, complex patterns |
 
 <details>
+<summary><strong>Expand: What is "Supervised Learning"? (beginner-friendly)</strong></summary>
+
+Imagine you are a child learning to recognize animals. Your parent **shows you pictures** and tells you: "this is a cat", "this is a dog". Over time, you learn to recognize them on your own. That is **supervised learning** &mdash; the model learns from **labeled examples** (data with known answers).
+
+**Analogy**: A student studying with an answer key. They see the question, check the answer, and adjust their understanding.
+
+The opposite &mdash; **unsupervised learning** &mdash; is like sorting a pile of random toys into groups without anyone telling you what the groups should be. The model discovers patterns on its own.
+
+</details>
+
+<details>
+<summary><strong>Expand: Each algorithm explained like you're 10 years old</strong></summary>
+
+#### Linear regression &mdash; Drawing the best straight line
+
+You're at a fair. You notice: the taller the person, the more they weigh (roughly). **Linear regression** draws the **best straight line** through those points so you can guess someone's weight just by knowing their height.
+
+> Real life: Predict apartment price from square meters, estimate electricity bill from consumption.
+
+#### Logistic regression &mdash; Yes or no?
+
+Despite the word "regression", this one **answers yes/no questions**. Should this email go to spam or not? Is this tumor benign or malignant?
+
+It gives you a **probability** (e.g., 87 % chance it's spam) and then picks a side.
+
+> Real life: Credit card approval (yes/no), disease screening (positive/negative).
+
+#### Decision tree &mdash; Playing 20 questions
+
+Remember the game "20 questions"? You ask yes/no questions to narrow down the answer. A decision tree does exactly that:
+
+- Is the petal longer than 2.5 cm? &rarr; **No** &rarr; It's a **Setosa**
+- **Yes** &rarr; Is the petal longer than 4.8 cm? &rarr; **Yes** &rarr; It's **Virginica**, etc.
+
+> Real life: A doctor's diagnostic flowchart, a bank's loan approval process.
+
+#### Random forest &mdash; Asking 100 friends and taking a vote
+
+One friend might give you bad advice. But if you ask **100 friends** the same question and take the **majority vote**, you'll almost always get the right answer. A **random forest** is just that: many decision trees voting together.
+
+> Real life: Fraud detection, recommendation systems, medical diagnosis.
+
+#### k-NN (k-Nearest Neighbors) &mdash; Look at your neighbors
+
+You move to a new neighborhood. You don't know if it's a quiet area. So you **look at the 5 nearest houses** &mdash; if 4 out of 5 are quiet families, you conclude it's probably a quiet area. k-NN does the same: it classifies new data by looking at the **k closest known examples**.
+
+> Real life: "Customers who bought this also bought&hellip;", handwriting recognition.
+
+#### SVM (Support Vector Machine) &mdash; Drawing the widest possible road
+
+Imagine red dots and blue dots on a table. You want to draw a line separating them. SVM draws the line that leaves the **widest gap** (margin) between the two groups, making it the most robust separator.
+
+> Real life: Text classification (positive vs negative reviews), image classification.
+
+#### Neural networks &mdash; A brain made of math
+
+Inspired by the human brain. Thousands of tiny "neurons" connected in **layers**. Each neuron does a simple calculation, but together they can learn incredibly complex things: recognize faces, translate languages, drive cars.
+
+> Real life: Voice assistants (Siri, Alexa), self-driving cars, ChatGPT.
+
+</details>
+
+<details>
 <summary><strong>Expand: “No free lunch”</strong></summary>
 
 No single algorithm wins on every dataset. Practice usually involves **trying sensible baselines** (e.g., logistic regression, random forest), **proper validation**, and **error analysis** rather than chasing complexity first.
@@ -288,6 +351,56 @@ Harmonic mean of precision and recall (balances both):
 $$
 F_1 = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
 $$
+
+<details>
+<summary><strong>Expand: Understanding metrics with a real-life COVID testing example</strong></summary>
+
+Imagine a clinic tests **8 people** for COVID. Here's the reality and what the test says:
+
+| Person | Actually has COVID? | Test result |
+|--------|-------------------|-------------|
+| Alice | **Yes** | **Positive** &#x2714; |
+| Bob | **Yes** | **Positive** &#x2714; |
+| Carol | **Yes** | **Negative** &#x2718; |
+| Dave | No | Negative &#x2714; |
+| Eve | No | Negative &#x2714; |
+| Frank | No | Negative &#x2714; |
+| Grace | No | **Positive** &#x2718; |
+| Hank | No | Negative &#x2714; |
+
+From these 8 results:
+
+| | Predicted Positive | Predicted Negative |
+|--|---|---|
+| **Actually Positive** | **TP = 2** (Alice, Bob) | **FN = 1** (Carol) |
+| **Actually Negative** | **FP = 1** (Grace) | **TN = 4** (Dave, Eve, Frank, Hank) |
+
+**What does each cell mean in plain English?**
+
+- **TP (True Positive) = 2** &mdash; Alice and Bob really have COVID and the test correctly says "positive". The test **got it right**.
+- **TN (True Negative) = 4** &mdash; Dave, Eve, Frank, and Hank don't have COVID and the test correctly says "negative". The test **got it right** again.
+- **FP (False Positive) = 1** &mdash; Grace does **NOT** have COVID, but the test wrongly says "positive". This is a **false alarm**. Think of it like a pregnancy test saying "pregnant" when the woman is **not** pregnant. Scary and stressful for nothing!
+- **FN (False Negative) = 1** &mdash; Carol **DOES** have COVID, but the test wrongly says "negative". This is the **most dangerous** error: Carol thinks she's healthy, goes out, and infects others.
+
+**Now let's compute the metrics:**
+
+- **Accuracy** = (2 + 4) / 8 = **75 %** &mdash; 6 out of 8 results are correct. Sounds OK, but is it good enough?
+- **Precision** = 2 / (2 + 1) = **66.7 %** &mdash; Of the 3 people the test flagged as positive, only 2 actually had COVID. 1 in 3 positive results is a false alarm.
+- **Recall** = 2 / (2 + 1) = **66.7 %** &mdash; Of the 3 people who actually had COVID, the test only caught 2. It **missed** Carol.
+- **F1-score** = 2 &times; (0.667 &times; 0.667) / (0.667 + 0.667) = **66.7 %** &mdash; The balance between precision and recall.
+
+**Why does this matter?**
+
+| Situation | What's worse? | Which metric to watch? |
+|-----------|--------------|----------------------|
+| **COVID / disease screening** | Missing a sick person (FN) | **Recall** must be very high |
+| **Spam filter** | Sending important email to spam (FP) | **Precision** must be high |
+| **Pregnancy test** | Saying "pregnant" when not (FP) = anxiety; Saying "not pregnant" when pregnant (FN) = missed care | Both matter, use **F1** |
+| **Airport security** | Letting a threat through (FN) | **Recall** is critical |
+
+> **Key insight**: A model with 99 % accuracy can still be terrible. If only 1 % of people have a disease and your model always says "healthy", it's 99 % accurate but **catches zero sick people** (recall = 0 %).
+
+</details>
 
 <details>
 <summary><strong>Expand: Multiclass metrics</strong></summary>

@@ -277,6 +277,69 @@ graph LR
 | **SVM (Support Vector Machine)** | Supervisé (Classif.) | Classification avec marge maximale, texte | ⭐⭐⭐ Élevée |
 | **Réseaux de Neurones**  | Supervisé / Non sup.| Images, texte, séries temporelles, NLP           | ⭐⭐⭐ Élevée  |
 
+<details>
+<summary><strong>C'est quoi l'apprentissage supervisé ? (explication pour débutants)</strong></summary>
+
+Imaginez un enfant qui apprend à reconnaître les animaux. Son parent lui **montre des photos** et lui dit : « ça c'est un chat », « ça c'est un chien ». Avec le temps, l'enfant apprend à les reconnaître tout seul. C'est exactement ça l'**apprentissage supervisé** &mdash; la machine apprend à partir d'**exemples étiquetés** (des données dont on connaît déjà la réponse).
+
+**Analogie** : Un étudiant qui révise avec un corrigé. Il voit la question, vérifie la réponse, et ajuste sa compréhension.
+
+Le contraire &mdash; l'**apprentissage non supervisé** &mdash; c'est comme trier un tas de jouets en groupes sans que personne ne vous dise quels groupes faire. La machine découvre les patterns toute seule.
+
+</details>
+
+<details>
+<summary><strong>Chaque algorithme expliqué comme si vous aviez 10 ans</strong></summary>
+
+#### Régression Linéaire &mdash; Tracer la meilleure droite
+
+Vous êtes dans une foire. Vous remarquez : plus une personne est grande, plus elle pèse (en gros). La **régression linéaire** trace la **meilleure droite** à travers ces points pour deviner le poids de quelqu'un juste en connaissant sa taille.
+
+> Vie réelle : Prédire le prix d'un appartement selon les mètres carrés, estimer une facture d'électricité selon la consommation.
+
+#### Régression Logistique &mdash; Oui ou non ?
+
+Malgré le mot « régression », cet algorithme **répond à des questions oui/non**. Cet email est-il un spam ou pas ? Cette tumeur est-elle bénigne ou maligne ?
+
+Il donne une **probabilité** (ex : 87 % de chance que c'est un spam) puis choisit un camp.
+
+> Vie réelle : Approbation de carte de crédit (oui/non), dépistage de maladie (positif/négatif).
+
+#### Arbre de Décision &mdash; Jouer aux 20 questions
+
+Vous connaissez le jeu des « 20 questions » ? On pose des questions oui/non pour trouver la réponse. Un arbre de décision fait exactement ça :
+
+- Le pétale fait-il plus de 2,5 cm ? &rarr; **Non** &rarr; C'est une **Setosa**
+- **Oui** &rarr; Le pétale fait-il plus de 4,8 cm ? &rarr; **Oui** &rarr; C'est une **Virginica**, etc.
+
+> Vie réelle : L'arbre diagnostique d'un médecin, le processus d'approbation de prêt d'une banque.
+
+#### Random Forest &mdash; Demander à 100 amis et voter
+
+Un seul ami peut vous donner un mauvais conseil. Mais si vous demandez à **100 amis** la même question et prenez le **vote majoritaire**, vous aurez presque toujours la bonne réponse. Un **Random Forest** c'est exactement ça : plusieurs arbres de décision qui votent ensemble.
+
+> Vie réelle : Détection de fraude, systèmes de recommandation, diagnostic médical.
+
+#### KNN (K-Nearest Neighbors) &mdash; Regarder ses voisins
+
+Vous déménagez dans un nouveau quartier. Vous ne savez pas si c'est calme. Alors vous **regardez les 5 maisons les plus proches** &mdash; si 4 sur 5 sont des familles tranquilles, vous concluez que c'est probablement un quartier calme. KNN fait pareil : il classe les nouvelles données en regardant les **K exemples connus les plus proches**.
+
+> Vie réelle : « Les clients qui ont acheté ceci ont aussi acheté&hellip; », reconnaissance d'écriture manuscrite.
+
+#### SVM (Support Vector Machine) &mdash; Tracer la route la plus large possible
+
+Imaginez des points rouges et des points bleus sur une table. Vous voulez tracer une ligne pour les séparer. SVM trace la ligne qui laisse le **plus grand espace** (marge) entre les deux groupes, ce qui en fait le séparateur le plus robuste.
+
+> Vie réelle : Classification de texte (avis positifs vs négatifs), classification d'images.
+
+#### Réseaux de Neurones &mdash; Un cerveau fait de maths
+
+Inspirés du cerveau humain. Des milliers de petits « neurones » connectés en **couches**. Chaque neurone fait un calcul simple, mais ensemble ils peuvent apprendre des choses incroyablement complexes : reconnaître des visages, traduire des langues, conduire des voitures.
+
+> Vie réelle : Assistants vocaux (Siri, Alexa), voitures autonomes, ChatGPT.
+
+</details>
+
 ### 4.2 Régression Linéaire
 
 Modélise la relation entre une variable dépendante `y` et une ou plusieurs variables indépendantes `x`.
@@ -571,6 +634,56 @@ graph TD
     style B fill:#E74C3C,stroke:#333,color:#fff
     style C fill:#E74C3C,stroke:#333,color:#fff
 ```
+
+<details>
+<summary><strong>Comprendre les métriques avec un exemple concret : test COVID sur 8 personnes</strong></summary>
+
+Imaginez une clinique qui teste **8 personnes** pour le COVID. Voici la réalité et ce que dit le test :
+
+| Personne | A vraiment le COVID ? | Résultat du test |
+|----------|----------------------|------------------|
+| Alice | **Oui** | **Positif** &check; |
+| Bob | **Oui** | **Positif** &check; |
+| Carole | **Oui** | **Négatif** &cross; |
+| David | Non | Négatif &check; |
+| Emma | Non | Négatif &check; |
+| François | Non | Négatif &check; |
+| Gisèle | Non | **Positif** &cross; |
+| Hugo | Non | Négatif &check; |
+
+À partir de ces 8 résultats :
+
+| | Prédit Positif | Prédit Négatif |
+|--|---|---|
+| **Réellement Positif** | **VP = 2** (Alice, Bob) | **FN = 1** (Carole) |
+| **Réellement Négatif** | **FP = 1** (Gisèle) | **VN = 4** (David, Emma, François, Hugo) |
+
+**Que signifie chaque case en langage simple ?**
+
+- **VP (Vrai Positif) = 2** &mdash; Alice et Bob ont vraiment le COVID et le test dit correctement « positif ». Le test **a bien fonctionné**.
+- **VN (Vrai Négatif) = 4** &mdash; David, Emma, François et Hugo n'ont pas le COVID et le test dit correctement « négatif ». Le test **a encore bien fonctionné**.
+- **FP (Faux Positif) = 1** &mdash; Gisèle n'a **PAS** le COVID, mais le test dit « positif » à tort. C'est une **fausse alarme**. C'est comme un test de grossesse qui dit « enceinte » alors que la femme **n'est pas** enceinte. Stressant pour rien !
+- **FN (Faux Négatif) = 1** &mdash; Carole **A** le COVID, mais le test dit « négatif » à tort. C'est l'erreur **la plus dangereuse** : Carole pense qu'elle est en bonne santé, sort, et contamine les autres.
+
+**Calculons maintenant les métriques :**
+
+- **Accuracy** = (2 + 4) / 8 = **75 %** &mdash; 6 résultats sur 8 sont corrects. Ça semble OK, mais est-ce suffisant ?
+- **Precision** = 2 / (2 + 1) = **66,7 %** &mdash; Sur les 3 personnes déclarées positives par le test, seulement 2 avaient vraiment le COVID. 1 résultat positif sur 3 est une fausse alarme.
+- **Recall** = 2 / (2 + 1) = **66,7 %** &mdash; Sur les 3 personnes qui avaient vraiment le COVID, le test n'en a détecté que 2. Il a **raté** Carole.
+- **F1-Score** = 2 &times; (0,667 &times; 0,667) / (0,667 + 0,667) = **66,7 %** &mdash; L'équilibre entre precision et recall.
+
+**Pourquoi c'est important ?**
+
+| Situation | Qu'est-ce qui est pire ? | Quelle métrique surveiller ? |
+|-----------|--------------------------|------------------------------|
+| **COVID / dépistage maladie** | Rater un malade (FN) | Le **Recall** doit être très élevé |
+| **Filtre anti-spam** | Envoyer un email important dans les spams (FP) | La **Precision** doit être élevée |
+| **Test de grossesse** | Dire « enceinte » alors que non (FP) = angoisse ; Dire « pas enceinte » alors que oui (FN) = suivi raté | Les deux comptent, utiliser le **F1** |
+| **Sécurité aéroport** | Laisser passer une menace (FN) | Le **Recall** est critique |
+
+> **Point clé** : Un modèle avec 99 % d'accuracy peut quand même être terrible. Si seulement 1 % des gens ont une maladie et que votre modèle dit toujours « sain », il est exact à 99 % mais **ne détecte aucun malade** (recall = 0 %).
+
+</details>
 
 ### 6.2 Accuracy (Exactitude)
 
