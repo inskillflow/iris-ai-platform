@@ -796,6 +796,37 @@ graph LR
     style C fill:#E74C3C,stroke:#333,color:#fff
 ```
 
+<details>
+<summary><strong>Overfitting et Underfitting expliqués pour les débutants complets</strong></summary>
+
+Pensez à un **étudiant qui prépare un examen**.
+
+#### Underfitting &mdash; L'étudiant qui a à peine ouvert le livre
+
+Il a survolé les titres des chapitres mais n'a jamais lu le contenu. Le jour de l'examen, il ne peut répondre à **rien** &mdash; ni aux questions du manuel, ni aux nouvelles.
+
+> **En termes ML** : le modèle est trop simple. Il n'a pas appris les patterns des données d'entraînement, donc il est mauvais partout.
+
+#### Overfitting &mdash; L'étudiant qui a mémorisé le corrigé
+
+Il a mémorisé chaque réponse des anciens examens **mot pour mot**, y compris les coquilles. Quand le prof change même un petit détail, il est perdu.
+
+> **En termes ML** : le modèle est trop complexe. Il a mémorisé les données d'entraînement (y compris le bruit et les valeurs aberrantes), donc il score parfaitement sur les données d'entraînement mais échoue sur les nouvelles données.
+
+#### Le bon équilibre &mdash; L'étudiant qui comprend vraiment
+
+Il a étudié les concepts et peut répondre à des questions qu'il n'a **jamais vues**, car il a appris la logique sous-jacente, pas juste les exemples.
+
+**Analogies de la vie quotidienne** :
+
+| Situation | Underfitting | Overfitting | Bon ajustement |
+|-----------|-------------|-------------|----------------|
+| **Apprendre à cuisiner** | Ne connaît que « chauffer la nourriture » | A mémorisé une seule recette au gramme près &mdash; ne peut pas s'adapter s'il manque un ingrédient | Comprend les principes de cuisine &mdash; peut improviser |
+| **GPS navigation** | Dit toujours « tout droit » | A mémorisé un seul trajet exact &mdash; plante s'il y a une déviation | Connaît le réseau routier &mdash; trouve des alternatives |
+| **Filtre anti-spam** | Laisse passer tous les emails | Bloque tout ce qui contient le mot « gratuit » (même les emails légitimes) | Détecte les vrais patterns de spam sans bloquer les emails normaux |
+
+</details>
+
 ### 7.2 Comment détecter ?
 
 ```
@@ -926,6 +957,164 @@ if uploaded_file:
 ```bash
 pip install numpy pandas matplotlib seaborn scikit-learn streamlit joblib
 ```
+
+<details>
+<summary><strong>Les formats de sauvegarde de modèles ML &mdash; joblib, pickle, .h5, .keras, ONNX, SavedModel, safetensors, PMML</strong></summary>
+
+Après avoir entraîné un modèle, il faut le **sauvegarder sur le disque** pour pouvoir le recharger plus tard sans tout réentraîner. Il existe de nombreux formats &mdash; voici une comparaison complète pour 2026 :
+
+### Tableau comparatif rapide
+
+| Format | Extension | Framework | Idéal pour | Encore pertinent en 2026 ? |
+|--------|-----------|-----------|------------|---------------------------|
+| **joblib** | `.joblib` `.pkl` | scikit-learn | Modèles sklearn petit/moyen | **Oui** &mdash; le standard pour sklearn |
+| **pickle** | `.pkl` `.pickle` | Python (tout) | N'importe quel objet Python | Oui, mais risques de sécurité |
+| **ONNX** | `.onnx` | Multi-framework | Production, déploiement multi-langage | **Oui** &mdash; en forte croissance |
+| **HDF5 (ancien Keras)** | `.h5` | Ancien Keras/TF1 | Projets legacy | **Déprécié** &mdash; éviter pour les nouveaux projets |
+| **.keras** | `.keras` | Keras 3+ / TF 2.16+ | Modèles Keras (nouveau standard) | **Oui** &mdash; format officiel Keras |
+| **SavedModel** | dossier | TensorFlow | TF Serving, TFLite, TF.js | **Oui** &mdash; standard écosystème TF |
+| **safetensors** | `.safetensors` | Hugging Face / PyTorch | LLMs, grands modèles, chargement sécurisé | **Oui** &mdash; en train de devenir le standard pour les LLMs |
+| **TorchScript** | `.pt` `.pth` | PyTorch | PyTorch en production | **Oui** &mdash; standard PyTorch |
+| **PMML** | `.pmml` | Multi-plateforme (XML) | Systèmes enterprise / Java | Niche &mdash; surtout legacy enterprise |
+
+### Détail de chaque format
+
+#### joblib &mdash; Le standard scikit-learn
+
+```python
+import joblib
+
+# Sauvegarder
+joblib.dump(model, "model.joblib")
+
+# Charger
+model = joblib.load("model.joblib")
+```
+
+| Avantages | Inconvénients |
+|-----------|--------------|
+| Extrêmement simple (2 lignes) | Python uniquement (pas de chargement en Java, C++, etc.) |
+| Efficace avec les grands tableaux NumPy | Pas sécurisé avec des fichiers non fiables (exécution de code arbitraire) |
+| Standard de fait pour scikit-learn | Pas de support multi-framework |
+
+#### pickle &mdash; La sérialisation native de Python
+
+```python
+import pickle
+
+with open("model.pkl", "wb") as f:
+    pickle.dump(model, f)
+```
+
+| Avantages | Inconvénients |
+|-----------|--------------|
+| Intégré à Python, aucune dépendance | **Risque de sécurité** : charger un pickle peut exécuter du code arbitraire |
+| Fonctionne avec n'importe quel objet Python | Pas portable entre versions de Python |
+| | Plus lent que joblib pour les grands tableaux |
+
+> **Attention** : Ne chargez JAMAIS un fichier pickle provenant d'une source non fiable. Il peut exécuter du code malveillant sur votre machine.
+
+#### .h5 (HDF5) &mdash; L'ancien format Keras
+
+```python
+# ANCIENNE façon (Keras < 3 / TF < 2.16)
+model.save("model.h5")
+model = keras.models.load_model("model.h5")
+```
+
+| Avantages | Inconvénients |
+|-----------|--------------|
+| A été le standard pendant des années | **Déprécié depuis Keras 3** (2024) |
+| Très documenté dans les tutoriels | Ne supporte pas toutes les nouvelles fonctionnalités Keras |
+| | Fichiers volumineux pour les gros modèles |
+
+> **En 2026** : Utilisez `.h5` uniquement si vous maintenez un projet legacy. Pour les nouveaux projets, utilisez `.keras`.
+
+#### .keras &mdash; Le nouveau standard Keras 3
+
+```python
+# NOUVELLE façon (Keras 3+ / TF 2.16+)
+model.save("model.keras")
+model = keras.models.load_model("model.keras")
+```
+
+| Avantages | Inconvénients |
+|-----------|--------------|
+| Format officiel depuis Keras 3 | Relativement nouveau, moins de tutoriels |
+| Supporte toutes les fonctionnalités Keras 3 | Spécifique à Keras |
+| Basé ZIP, inclut config + poids | |
+
+#### ONNX &mdash; Le traducteur universel
+
+```python
+# Convertir un modèle sklearn en ONNX
+from skl2onnx import convert_sklearn
+from skl2onnx.common.data_types import FloatTensorType
+
+initial_type = [("input", FloatTensorType([None, 4]))]
+onnx_model = convert_sklearn(model, initial_types=initial_type)
+
+with open("model.onnx", "wb") as f:
+    f.write(onnx_model.SerializeToString())
+```
+
+| Avantages | Inconvénients |
+|-----------|--------------|
+| **Multi-langage** : chargeable en Python, C++, Java, C#, JavaScript | Étape de conversion nécessaire |
+| **Multi-framework** : depuis sklearn, PyTorch, TF, etc. | Toutes les opérations ne sont pas supportées |
+| Inférence optimisée (ONNX Runtime) | Moins flexible que les formats natifs |
+| Accélération matérielle (GPU, edge) | |
+
+> **En 2026** : ONNX est LE choix pour le déploiement en production multi-langage et multi-plateforme.
+
+#### SavedModel &mdash; Le format écosystème TensorFlow
+
+```python
+# TensorFlow
+model.save("saved_model_dir")  # sauvegarde un dossier
+model = tf.keras.models.load_model("saved_model_dir")
+```
+
+| Avantages | Inconvénients |
+|-----------|--------------|
+| Intégration TF Serving, TFLite, TF.js | TensorFlow uniquement |
+| Supporte les signatures pour le serving | Sauvegarde un dossier, pas un fichier unique |
+| Production-grade | Lourd pour les petits modèles |
+
+#### safetensors &mdash; Le format sûr et rapide pour les grands modèles
+
+```python
+from safetensors.torch import save_file, load_file
+
+# Sauvegarder
+save_file(model.state_dict(), "model.safetensors")
+
+# Charger
+state_dict = load_file("model.safetensors")
+model.load_state_dict(state_dict)
+```
+
+| Avantages | Inconvénients |
+|-----------|--------------|
+| **Sécurisé** : pas d'exécution de code arbitraire (contrairement à pickle) | Ne stocke que les tenseurs (pas l'architecture complète) |
+| **Rapide** : chargement memory-mapped, zero-copy | Il faut reconstruire l'architecture du modèle séparément |
+| Standard pour les modèles Hugging Face / LLMs | Plus récent, moins universel |
+
+> **En 2026** : safetensors est devenu le format par défaut pour les LLMs et les modèles Hugging Face.
+
+### Que devez-VOUS utiliser ?
+
+| Votre situation | Format recommandé |
+|----------------|-------------------|
+| Modèle scikit-learn (notre projet Iris) | **joblib** |
+| Modèle Keras / TensorFlow | **.keras** (pas .h5 !) |
+| Modèle PyTorch | **safetensors** ou `.pt` |
+| Déploiement en production (multi-langage) | **ONNX** |
+| Hugging Face / LLM | **safetensors** |
+| Projet legacy avec des fichiers .h5 | Garder .h5, migrer quand possible |
+
+</details>
+
 
 </details>
 
